@@ -10,6 +10,7 @@ const risultato = document.getElementById('risultato');
 
 // inizio gioco
 var myArrRandom;
+var myArrDivEl = [];
 button.addEventListener('click',
     function(){
         myArrRandom = [];
@@ -22,33 +23,35 @@ button.addEventListener('click',
         let bombeArr = [];
         let conterPunti = 0;
         let maxPunti;
+        let numberSquare;
         if(difficoltà===1){
-            myArrRandom = arrayRandomUniqueNum(100,1,100);
-            bombeArr = arrayRandomUniqueNum(16,1,100);
+            numberSquare = 100;
             classeDiff = 'square-1';
             maxPunti = 84;
         } else if(difficoltà===2){
-            myArrRandom = arrayRandomUniqueNum(81,1,81);
-            bombeArr = arrayRandomUniqueNum(16,1,81);
+            numberSquare = 81;
             classeDiff = 'square-2';
             maxPunti = 65;
         } else {
-            myArrRandom = arrayRandomUniqueNum(49,1,49);
-            bombeArr = arrayRandomUniqueNum(16,1,49);
+            numberSquare = 49;
             classeDiff = 'square-3';
             maxPunti = 33;
         }
+        myArrRandom = arrayRandomUniqueNum(numberSquare,1,numberSquare);
+        bombeArr = arrayRandomUniqueNum(16,1,numberSquare);
         for (let i=0; i<myArrRandom.length; i++){
-            const divEl = createMyElement(classeDiff);
+            myArrDivEl[i] = createMyElement(classeDiff);
             let arrItem = myArrRandom[i];
-            divEl.append(arrItem);
-            divEl.addEventListener('click',
+            myArrDivEl[i].append(arrItem);
+            myArrDivEl[i].addEventListener('click',
                 function(){
                     if(bombeArr.includes(arrItem)){
                         this.classList.add('active-bomb');  
                         gridGame.className = 'disable';
                         risultato.className = '';
                         risultato.innerHTML = `<h4>Hai preso una bomba!!! Il tuo punteggio finale è ${conterPunti}</h4>`;
+                        stampaBombe(bombeArr,numberSquare);
+
                     } else {
                         this.classList.add('active');
                         conterPunti++;
@@ -56,11 +59,12 @@ button.addEventListener('click',
                             gridGame.className = 'disable';
                             risultato.className = '';
                             risultato.innerHTML = `<h4>Complimenti hai vinto!!!</h4>`;
+                            stampaBombe(bombeArr,numberSquare);
                         }
                     }
                 }
             );
-            gridGame.append(divEl);
+            gridGame.append(myArrDivEl[i]);
         }
     }
 );
@@ -71,6 +75,16 @@ const createMyElement = (classAdd) => {
     node.classList.add('square');
     node.classList.add(classAdd);
     return node;
+}
+
+function stampaBombe(arrBombe,max){
+    for (let i=0; i<max; i++){
+        console.log(i);
+        if(arrBombe.includes(parseInt(myArrDivEl[i].innerText))){
+            console.log(myArrDivEl[i].innerText);
+            myArrDivEl[i].classList.add('active-bomb');
+        }
+    }
 }
 
 //funzioni generiche
