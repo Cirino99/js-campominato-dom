@@ -16,6 +16,7 @@ button.addEventListener('click',
         let difficoltà = parseInt(livello.value);
         let classeDiff;
         let bombeArr = [];
+        let conterPunti = 0;
         if(difficoltà===1){
             myArrRandom = arrayRandomUniqueNum(100,1,100);
             bombeArr = arrayRandomUniqueNum(16,1,100);
@@ -37,8 +38,10 @@ button.addEventListener('click',
                 function(){
                     if(bombeArr.includes(arrItem)){
                         this.classList.add('active-bomb');
+                        alert(conterPunti);
                     } else {
                         this.classList.add('active');
+                        conterPunti++;
                     }
                 }
             );
