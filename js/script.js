@@ -48,14 +48,14 @@ button.addEventListener('click',
                         this.classList.add('active-bomb');  
                         gridGame.className = 'disable';
                         risultato.className = '';
-                        risultato.innerHTML = `<h4>Hai preso una bomba!!! Il tuo punteggio finale è ${conterPunti}</h4>`
+                        risultato.innerHTML = `<h4>Hai preso una bomba!!! Il tuo punteggio finale è ${conterPunti}</h4>`;
                     } else {
                         this.classList.add('active');
                         conterPunti++;
                         if (conterPunti===maxPunti){
                             gridGame.className = 'disable';
                             risultato.className = '';
-                            risultato.innerHTML = `<h4>Complimenti hai vinto!!!</h4>`
+                            risultato.innerHTML = `<h4>Complimenti hai vinto!!!</h4>`;
                         }
                     }
                 }
