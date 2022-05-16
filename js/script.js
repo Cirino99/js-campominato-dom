@@ -79,7 +79,6 @@ const createMyElement = (classAdd) => {
 
 function stampaBombe(arrBombe,max){
     for (let i=0; i<max; i++){
-        console.log(i);
         if(arrBombe.includes(parseInt(myArrDivEl[i].innerText))){
             console.log(myArrDivEl[i].innerText);
             myArrDivEl[i].classList.add('active-bomb');
