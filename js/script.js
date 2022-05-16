@@ -21,18 +21,22 @@ button.addEventListener('click',
         let classeDiff;
         let bombeArr = [];
         let conterPunti = 0;
+        let maxPunti;
         if(difficoltà===1){
             myArrRandom = arrayRandomUniqueNum(100,1,100);
             bombeArr = arrayRandomUniqueNum(16,1,100);
             classeDiff = 'square-1';
+            maxPunti = 84;
         } else if(difficoltà===2){
             myArrRandom = arrayRandomUniqueNum(81,1,81);
             bombeArr = arrayRandomUniqueNum(16,1,81);
             classeDiff = 'square-2';
+            maxPunti = 65;
         } else {
             myArrRandom = arrayRandomUniqueNum(49,1,49);
             bombeArr = arrayRandomUniqueNum(16,1,49);
             classeDiff = 'square-3';
+            maxPunti = 33;
         }
         for (let i=0; i<myArrRandom.length; i++){
             const divEl = createMyElement(classeDiff);
@@ -48,6 +52,11 @@ button.addEventListener('click',
                     } else {
                         this.classList.add('active');
                         conterPunti++;
+                        if (conterPunti===maxPunti){
+                            gridGame.className = 'disable';
+                            risultato.className = '';
+                            risultato.innerHTML = `<h4>Complimenti hai vinto!!!</h4>`
+                        }
                     }
                 }
             );
