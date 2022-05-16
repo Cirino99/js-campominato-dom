@@ -15,14 +15,18 @@ button.addEventListener('click',
         gridGame.innerHTML = '';
         let difficoltà = parseInt(livello.value);
         let classeDiff;
+        let bombeArr = [];
         if(difficoltà===1){
             myArrRandom = arrayRandomUniqueNum(100,1,100);
+            bombeArr = arrayRandomUniqueNum(16,1,100);
             classeDiff = 'square-1';
         } else if(difficoltà===2){
             myArrRandom = arrayRandomUniqueNum(81,1,81);
+            bombeArr = arrayRandomUniqueNum(16,1,81);
             classeDiff = 'square-2';
         } else {
             myArrRandom = arrayRandomUniqueNum(49,1,49);
+            bombeArr = arrayRandomUniqueNum(16,1,49);
             classeDiff = 'square-3';
         }
         for (let i=0; i<myArrRandom.length; i++){
@@ -31,7 +35,11 @@ button.addEventListener('click',
             divEl.append(arrItem);
             divEl.addEventListener('click',
                 function(){
-                    this.classList.add('active');
+                    if(bombeArr.includes(arrItem)){
+                        this.classList.add('active-bomb');
+                    } else {
+                        this.classList.add('active');
+                    }
                 }
             );
             gridGame.append(divEl);
