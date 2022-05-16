@@ -14,6 +14,15 @@
 }
 
 /* game */
+#risultato {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: greenyellow;
+    padding: 15px;
+    border-radius: 5px;
+}
 #game {
     display: flex;
     width:  calc(100vh - 130px);
@@ -47,3 +56,6 @@
 .active-bomb {
     background-color: red;
 }
+.disable{ 
+    pointer-events: none; 
+} 

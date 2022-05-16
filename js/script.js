@@ -6,6 +6,7 @@
 const livello = document.getElementById('livello');
 const button = document.getElementById('play-button');
 const gridGame = document.getElementById('game');
+const risultato = document.getElementById('risultato');
 
 // inizio gioco
 var myArrRandom;
@@ -13,6 +14,9 @@ button.addEventListener('click',
     function(){
         myArrRandom = [];
         gridGame.innerHTML = '';
+        gridGame.className = '';
+        risultato.innerText = '';
+        risultato.className ='d-none';
         let difficoltà = parseInt(livello.value);
         let classeDiff;
         let bombeArr = [];
@@ -37,8 +41,10 @@ button.addEventListener('click',
             divEl.addEventListener('click',
                 function(){
                     if(bombeArr.includes(arrItem)){
-                        this.classList.add('active-bomb');
-                        alert(conterPunti);
+                        this.classList.add('active-bomb');  
+                        gridGame.className = 'disable';
+                        risultato.className = '';
+                        risultato.innerHTML = `<h4>Hai preso una bomba!!! Il tuo punteggio finale è ${conterPunti}</h4>`
                     } else {
                         this.classList.add('active');
                         conterPunti++;
